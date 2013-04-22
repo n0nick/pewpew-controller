@@ -4,6 +4,7 @@
   var $qr    = $('#qr'),
       width  = $qr.width(),
       height = $qr.height(),
+      $buttons = $('#actions button'),
 
       updateQR = function(message) {
         $qr.children('canvas').remove();
@@ -16,9 +17,16 @@
 
   updateQR("Start");
 
-  $('#actions > li').on('click', function(e) {
+  $buttons.on('click', function(e) {
     updateQR($(this).text());
     e.preventDefault();
+  });
+
+  $buttons.on('touchstart', function() {
+    $(this).addClass('active');
+  });
+  $buttons.on('touchend', function() {
+    $(this).removeClass('active');
   });
 
 })(jQuery);
