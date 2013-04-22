@@ -1,56 +1,73 @@
 body {
-  background: #fff;
   font-family: 'Share Tech', sans-serif;
+  background: #e1e7f6;
 }
 
 h1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+
   font-size: 40pt;
-  margin: 50px 0 0 100px;
+  margin: 0;
 
-  height: 100px;
-}
-
-#qr {
-  float: left;
-
-  margin-left: 100px;
-
-  width: 500px;
-  height: 500px;
+  padding: 50px 20px 0;
 }
 
 #actions {
-  float: right;
+  position: absolute;
+  top: 200px;
+  right: 0;
+  z-index: 1;
 
   list-style-type: none;
-  text-align: center;
+  text-align: right;
 
-  margin: 0 50px 0 0;
+  margin: 0;
 
-  width: 200px;
-  height: 500px;
+  width: 100%;
 }
 #actions li {
-  margin: 0 20px 35px 0;
+  margin: 0 0 20px 0;
 }
 #actions li button {
-  width: 200px;
+  width: 500px;
   height: 100px;
 
   line-height: 100px;
   border: 0;
 
+  font-family: 'Share Tech', sans-serif;
   font-size: 20pt;
   color: #fff;
+  text-align: right;
+
+  padding-right: 50px;
 
   transition: background-color 0.3s;
+
+  background: transparent;
 }
 #actions li button:active,
 #actions li button.active {
   background-color: #999 !important;
 }
 
-#actions li:nth-child(1) button { background-color: #097051; }
-#actions li:nth-child(2) button { background-color: #EDA62B; }
-#actions li:nth-child(3) button { background-color: #6C2BED; }
-#actions li:nth-child(4) button { background-color: #24B9C9; }
+#actions li:nth-child(1) { background-color: #097051; }
+#actions li:nth-child(2) { background-color: #EDA62B; }
+#actions li:nth-child(3) { background-color: #6C2BED; }
+#actions li:nth-child(4) { background-color: #24B9C9; }
+
+#qr {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+  padding: 20px;
+
+  background: #fff;
+  height: 95%;
+}
+

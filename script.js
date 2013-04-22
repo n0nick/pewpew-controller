@@ -1,19 +1,20 @@
-(function($){
+(function(window, $){
   "use strict";
 
   var $qr    = $('#qr'),
-      width  = $qr.width(),
-      height = $qr.height(),
+      size = $qr.height(),
       $buttons = $('#actions button'),
 
       updateQR = function(message) {
         $qr.children('canvas').remove();
         $qr.qrcode({
           text: message,
-          width: width,
-          height: height
+          width: $qr.width(),
+          height: $qr.height()
         });
       };
+
+  $qr.width(size).height(size);
 
   updateQR("Start");
 
@@ -29,4 +30,8 @@
     $(this).removeClass('active');
   });
 
-})(jQuery);
+  $(window).resize(function() {
+    $qr.width(size).height(size);
+  });
+
+})(window, jQuery);
