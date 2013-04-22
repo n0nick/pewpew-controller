@@ -6,7 +6,13 @@
 <meta name="description" content="">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pew Pew!">
+
 <meta http-equiv="cleartype" content="on">
 
 <link href='//fonts.googleapis.com/css?family=Share+Tech' rel='stylesheet' type='text/css'>
@@ -16,7 +22,7 @@
 <body>
     <h1>Pew Pew!</h1>
 
-    <img src="http://placehold.it/500x500" id="qr" alt="QR Code" width="500" height="500">
+    <div id="qr"></div>
 
     <ul id="actions">
       <li><span>Action 1</span></li>
@@ -26,5 +32,7 @@
     </ul>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
