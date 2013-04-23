@@ -70,4 +70,8 @@ h1 {
   background: #fff;
   height: 95%;
 }
+#qr canvas {
+  height: 95%;
+  margin: 15px;
+}
 

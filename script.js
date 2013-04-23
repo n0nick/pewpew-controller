@@ -31,7 +31,9 @@
   });
 
   $(window).resize(function() {
+    var size = $(window).height() * 0.95;
+    // $qr.css('left', $(window).width()/2 - size/2);
     $qr.width(size).height(size);
-  });
+  }).resize();
 
 })(window, jQuery);
