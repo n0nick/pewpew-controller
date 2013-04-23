@@ -8,7 +8,7 @@
       updateQR = function(message) {
         $qr.children('canvas').remove();
         $qr.qrcode({
-          text: message,
+          text: message.replace(/[^\w]/g, ''),
           width: $qr.width(),
           height: $qr.height()
         });
