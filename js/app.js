@@ -5,9 +5,9 @@
     var app = this;
 
     app.debug = false;
-    app.WEAPON_APPEARING_INTERVAL = 100;
+    app.WEAPON_APPEARING_INTERVAL = 1000;
     app.WEAPON_COMBINATION_SIZE = 3;
-    app.SHOOTING_TIME = 1000;
+    app.SHOOTING_TIME = 5000;
 
     app.$templates = $('.template').hide();
     app.$content   = $('#content');
