@@ -130,7 +130,9 @@
         params = params || null;
         log("[Controller] viewing page:", page, params);
 
-        this._render('#' + page);
+        var hash = "#" + page;
+        window.document.location.hash = hash + (params ? "?" + $.param(params) : "");
+        this._render(hash);
         if (page in this._controllers) {
           this._controllers[page].call(this, params);
         }
