@@ -40,6 +40,9 @@ h2 {
 
   font-size: 0;
 }
+#weapons li.hidden button {
+  visibility: hidden;
+}
 #weapons li:nth-of-type(1) button,
 #weapons li:nth-of-type(4) button {
   width: 400px;

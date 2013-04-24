@@ -14,6 +14,7 @@
     };
 
     app.debug = false;
+    app.WEAPON_APPEARING_INTERVAL = 1000;
 
     app.Connection = {
       connection: null,
@@ -65,6 +66,14 @@
         },
 
         build: function($page) {
+          var $weapons = $("#weapons li", $page);
+          var addWeapon = function() {
+            var $hidden = $weapons.filter(".hidden");
+            var random = Math.round(Math.random() * $hidden.length-1);
+            $hidden.eq(random).removeClass("hidden");
+          };
+          $weapons.addClass("hidden");
+          window.setInterval(addWeapon, this._app.WEAPON_APPEARING_INTERVAL);
         },
 
         shoot: function($page) {
