@@ -16,28 +16,18 @@
     app.debug = false;
 
     app.Connection = {
-      socket: null,
+      connection: null,
       active: false,
 
       start: function(host) {
         log("[Connection] Starting connection to", host);
-        this.socket = new window.WebSocket("ws://" + host);
-        this.socket.onopen = this.opened;
-        this.socket.onclose = this.closed;
+        this.connection = host;
+        $(this).trigger("opened");
       },
 
       stop: function() {
         this.active = false;
         $(this).trigger("closed");
-      },
-
-      opened: function() {
-        this.active = true;
-        $(this).trigger("connected");
-      },
-
-      closed: function() {
-        this.stop();
       }
     },
 
@@ -62,15 +52,15 @@
 
       _controllers: {
         index: function($page) {
-          var serverHost = this._getParam('server');
+          var serverHost = this._getParam("server");
           if (!serverHost) {
             log("[Controller] No server address provided");
-            $('h2', $page).text('Please supply a server address.');
+            $("h2", $page).text("Please supply a server address.");
           } else {
-            this._app.Connection.start(serverHost);
-            $(this._app.Connection).on('connected', function() {
-              app.Controllers.go('build');
+            $(this._app.Connection).on("opened", function() {
+              app.Controllers.go("build");
             });
+            this._app.Connection.start(serverHost);
           }
         },
 
