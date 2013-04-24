@@ -90,7 +90,7 @@
             $hidden.eq(random).removeClass("hidden");
           };
           $weapons.addClass("hidden").removeAttr('disabled');
-          window.setInterval(addWeapon, app.WEAPON_APPEARING_INTERVAL);
+          var weaponInterval = window.setInterval(addWeapon, app.WEAPON_APPEARING_INTERVAL);
 
           // weapon construction
           var selectedWeapons = [];
@@ -103,6 +103,7 @@
 
             if (selectedWeapons.length >= app.WEAPON_COMBINATION_SIZE) {
               // time to shoot
+              window.clearInterval(weaponInterval);
               app.Controllers.go('shoot', { weapons: selectedWeapons });
             }
           });
