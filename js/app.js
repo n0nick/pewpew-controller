@@ -1,30 +1,43 @@
-App = Ember.Application.create();
+(function($, window){
+  "use strict";
 
-Server = DS.Model.extend({
-  ip_address: DS.attr('string'),
+  var Application = function() {
+    var app = this;
 
-  connect: function() {
-    console.log("supposed to connect to " + this.get('ip_address'));
-  }
-});
+    var $pages = $('.page');
 
-App.Router.map(function() {
-  this.route("connect", { path: "/connect/:server" });
-  this.route("build", { path: "/build" });
-});
+    app.Pages = {
+      _showOnly: function(id) {
+        $pages.not(id).hide();
+        return $pages.filter(id).show();
+      },
 
-App.IndexRoute = Ember.Route.extend({
-  model: Server.createRecord()
-});
+      _controllers: {
+        index: function($page) {
+        },
 
-App.ConnectRoute = Ember.Route.extend({
-  enter: function(p) {
-    console.log('bototm');
-  }
-});
+        build: function($page) {
+        },
 
-App.BuildRoute = Ember.Route.extend({
-  model: function() {
-    return ['fire', 'water', 'wind', 'stone', 'magic', 'ice'];
-  }
-});
+        shoot: function($page) {
+        }
+      },
+
+      go: function(page) {
+        var $page = this._showOnly('#' + page);
+        if (page in this._controllers) {
+          this._controllers[page].call(this, $page);
+        }
+      }
+    };
+
+    app.start = function(){
+      app.Pages.go('index');
+    };
+
+  };
+
+  window.App = new Application();
+  window.App.start();
+
+})(jQuery, window);

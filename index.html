@@ -27,38 +27,25 @@
 </head>
 <body>
 
-  <script type="text/x-handlebars">
-    <h1>Pew Pew!</h1>
+  <h1>Pew Pew!</h1>
 
-    {{outlet}}
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="index">
-    <h2>Please supply a server address.</h2>
-    <form>
-      <input type="text" name="ip_address">
-    </form>
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="connect">
+  <div class="page" id="index">
     <h2>Connecting to server...</h2>
-  </script>
+  </div>
 
-  <script type="text/x-handlebars" data-template-name="build">
+  <div class="page" id="build">
     <h2>Build your weapon.</h2>
     <ul id="weapons">
-    {{#each item in model}}
-      <li {{bindAttr class="item"}}><button>{{item}}</button></li>
-    {{/each}}
+      <li class="water"><button>item</button></li>
+      <li class="fire"><button>item</button></li>
+      <li class="magic"><button>item</button></li>
+      <li class="stone"><button>item</button></li>
+      <li class="ice"><button>item</button></li>
+      <li class="wind"><button>item</button></li>
     </ul>
-  </script>
+  </div>
 
-  <script type="text/x-handlebars" data-template-name="shoot">
-  </script>
-
-  <script src="js/libs/jquery-1.9.1.js"></script>
-  <script src="js/libs/handlebars-1.0.0-rc.3.js"></script>
-  <script src="js/libs/ember-1.0.0-rc.3.js"></script>
+  <script src="js/libs/jquery-2.0.0.min.js"></script>
   <script src="js/app.js"></script>
 
 </body>
