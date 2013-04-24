@@ -1,6 +1,6 @@
 /* Put your CSS here */
 html, body {
-    margin: 100px;
+    margin: 50px;
     background-color: #393a3d;
     font-family: 'Open Sans', sans-serif;
     color: #eee;
@@ -48,7 +48,7 @@ h2 {
 }
 #weapons li:nth-of-type(1) button,
 #weapons li:nth-of-type(4) button {
-  width: 400px;
+  width: 300px;
   clear: left;
 }
 
@@ -61,6 +61,6 @@ h2 {
 
 #spinner {
   background: #000 url('/img/spinner.gif') no-repeat 50% 50%;
-  width: 900px;
+  width: 800px;
   height: 400px;
 }

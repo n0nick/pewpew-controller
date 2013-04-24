@@ -94,7 +94,7 @@
 
           // weapon construction
           var selectedWeapons = [];
-          $weapons.on('click', function() {
+          $weapons.on('click touchstart', function() {
             var weapon = $(this).text();
             selectedWeapons.push(weapon);
             log("[Controller] [build] weapons selected:", selectedWeapons);
