@@ -1,7 +1,7 @@
 (function($, window){
   "use strict";
 
-  var Application = function(debug) {
+  var Application = function() {
     var app = this;
 
     var $pages = $('.page');
@@ -17,6 +17,7 @@
 
     app.Connection = {
       socket: null,
+      active: false,
 
       start: function(host) {
         log("[Connection] Starting connection to", host);
@@ -24,9 +25,19 @@
         this.socket.onopen = this.opened;
         this.socket.onclose = this.closed;
       },
-      opened: function() {
+
+      stop: function() {
+        this.active = false;
+        $(this).trigger("closed");
       },
+
+      opened: function() {
+        this.active = true;
+        $(this).trigger("connected");
+      },
+
       closed: function() {
+        this.stop();
       }
     },
 
@@ -57,6 +68,9 @@
             $('h2', $page).text('Please supply a server address.');
           } else {
             this._app.Connection.start(serverHost);
+            $(this._app.Connection).on('connected', function() {
+              app.Controllers.go('build');
+            });
           }
         },
 
