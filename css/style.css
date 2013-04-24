@@ -58,3 +58,9 @@ h2 {
 #weapons li.stone button { background-position: 50% -312px; background-color: #8CBF26; }
 #weapons li.magic button { background-position: 50% -198px; background-color: #A05000; }
 #weapons li.ice   button { background-position: 50% -84px;  background-color: #F09609; }
+
+#spinner {
+  background: #000 url('/img/spinner.gif') no-repeat 50% 50%;
+  width: 900px;
+  height: 400px;
+}
