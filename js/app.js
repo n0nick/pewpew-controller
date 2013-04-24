@@ -29,13 +29,18 @@
 
       start: function(host) {
         log("[Connection] Starting connection to", host);
-        this.connection = host;
+        this.connection = "http://" + host;
         $(this).trigger("opened");
       },
 
       stop: function() {
         this.active = false;
         $(this).trigger("closed");
+      },
+
+      send: function(data) {
+        log("[Connection] Sending to server", data);
+        $.ajax(this.connection, { dataType: "jsonp", data: data });
       }
     },
 
@@ -106,6 +111,17 @@
           var app = this._app;
 
           log("[Controller] [Shoot] Shooting with weapons", params.weapons);
+
+          // send fire
+          app.Connection.send({
+            w: params.weapons.join(',')
+          });
+
+          // go back after shooting time ended
+          var goBack = function() {
+            app.Controllers.go('build');
+          };
+          window.setTimeout(goBack, app.SHOOTING_TIME);
         }
       },
 
