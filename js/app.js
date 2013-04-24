@@ -89,8 +89,8 @@
             var random = Math.round(Math.random() * $hidden.length-1);
             $hidden.eq(random).removeClass("hidden");
           };
-          $weapons.addClass("hidden");
-          window.setInterval(addWeapon, this._app.WEAPON_APPEARING_INTERVAL);
+          $weapons.addClass("hidden").removeAttr('disabled');
+          window.setInterval(addWeapon, app.WEAPON_APPEARING_INTERVAL);
 
           // weapon construction
           var selectedWeapons = [];
@@ -101,7 +101,8 @@
 
             $(this).attr('disabled', true);
 
-            if (selectedWeapons.length >= 3) { // time to shoot
+            if (selectedWeapons.length >= app.WEAPON_COMBINATION_SIZE) {
+              // time to shoot
               app.Controllers.go('shoot', { weapons: selectedWeapons });
             }
           });
@@ -126,6 +127,7 @@
       },
 
       go: function(page, params) {
+        params = params || null;
         log("[Controller] viewing page", page, params);
 
         this._render('#' + page);
