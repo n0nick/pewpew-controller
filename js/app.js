@@ -8,6 +8,7 @@
     app.WEAPON_APPEARING_INTERVAL = 1000;
     app.WEAPON_COMBINATION_SIZE = 3;
     app.SHOOTING_TIME = 5000;
+    app.SERVER_REPORT_INTERVAL = 100;
 
     app.$templates = $('.template').hide();
     app.$content   = $('#content');
@@ -115,12 +116,16 @@
           log("[Controller] [Shoot] Shooting with weapons:", params.weapons);
 
           // send fire
-          app.Connection.send({
-            w: params.weapons.join(',')
-          });
+          var reportFire = function(){
+            app.Connection.send({
+              w: params.weapons.join(',')
+            });
+          };
+          var reportInterval = window.setInterval(reportFire, app.SERVER_REPORT_INTERVAL);
 
           // go back after shooting time ended
           var goBack = function() {
+            window.clearInterval(reportInterval);
             app.Controllers.go('build');
           };
           window.setTimeout(goBack, app.SHOOTING_TIME);
