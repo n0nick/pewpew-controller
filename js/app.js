@@ -28,7 +28,7 @@
       active: false,
 
       start: function(host) {
-        log("[Connection] Starting connection to", host);
+        log("[Connection] Starting connection to:", host);
         this.connection = "http://" + host;
         $(this).trigger("opened");
       },
@@ -39,7 +39,7 @@
       },
 
       send: function(data) {
-        log("[Connection] Sending to server", data);
+        log("[Connection] Sending to server:", data);
         $.ajax(this.connection, { dataType: "jsonp", data: data });
       }
     },
@@ -111,7 +111,7 @@
         shoot: function(params) {
           var app = this._app;
 
-          log("[Controller] [Shoot] Shooting with weapons", params.weapons);
+          log("[Controller] [Shoot] Shooting with weapons:", params.weapons);
 
           // send fire
           app.Connection.send({
@@ -128,7 +128,7 @@
 
       go: function(page, params) {
         params = params || null;
-        log("[Controller] viewing page", page, params);
+        log("[Controller] viewing page:", page, params);
 
         this._render('#' + page);
         if (page in this._controllers) {
