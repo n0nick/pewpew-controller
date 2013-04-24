@@ -4,7 +4,13 @@
   var Application = function() {
     var app = this;
 
-    var $pages = $('.page');
+    app.debug = false;
+    app.WEAPON_APPEARING_INTERVAL = 100;
+    app.WEAPON_COMBINATION_SIZE = 3;
+    app.SHOOTING_TIME = 1000;
+
+    app.$templates = $('.template').hide();
+    app.$content   = $('#content');
 
     var log = function() {
       if (app.debug && window.console) {
@@ -13,8 +19,9 @@
       }
     };
 
-    app.debug = false;
-    app.WEAPON_APPEARING_INTERVAL = 1000;
+    app.$ = function(selector) {
+      return $(selector, app.$content);
+    };
 
     app.Connection = {
       connection: null,
@@ -35,9 +42,9 @@
     app.Controllers = {
       _app: app,
 
-      _showOnly: function(id) {
-        $pages.not(id).hide();
-        return $pages.filter(id).show();
+      _render: function(id) {
+        var $template = app.$templates.filter(id);
+        app.$content.html($template.html());
       },
 
       _getParam: function(key) {
@@ -52,22 +59,26 @@
       },
 
       _controllers: {
-        index: function($page) {
+        index: function() {
+          var app = this._app;
+
           var serverHost = this._getParam("server");
           if (!serverHost) {
             log("[Controller] [index] No server address provided");
-            $("h2", $page).text("Please supply a server address.");
+            app.$("h2").text("Please supply a server address.");
+
           } else {
-            $(this._app.Connection).on("opened", function() {
+            $(app.Connection).on("opened", function() {
               app.Controllers.go("build");
             });
-            this._app.Connection.start(serverHost);
+            app.Connection.start(serverHost);
           }
         },
 
-        build: function($page) {
+        build: function() {
           // show weapons one-by-one
-          var $weapons = $("#weapons button", $page);
+          var app = this._app;
+          var $weapons = app.$("#weapons button");
           var addWeapon = function() {
             var $hidden = $weapons.filter(".hidden");
             var random = Math.round(Math.random() * $hidden.length-1);
@@ -91,7 +102,9 @@
           });
         },
 
-        shoot: function($page, params) {
+        shoot: function(params) {
+          var app = this._app;
+
           log("[Controller] [Shoot] Shooting with weapons", params.weapons);
         }
       },
@@ -99,9 +112,9 @@
       go: function(page, params) {
         log("[Controller] viewing page", page, params);
 
-        var $page = this._showOnly('#' + page);
+        this._render('#' + page);
         if (page in this._controllers) {
-          this._controllers[page].call(this, $page, params);
+          this._controllers[page].call(this, params);
         }
       }
     };
