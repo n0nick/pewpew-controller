@@ -1,4 +1,54 @@
 /* Put your CSS here */
 html, body {
-    margin: 20px;
+    margin: 100px;
+    background-color: #393a3d;
+    font-family: 'Open Sans', sans-serif;
+    color: #eee;
 }
+
+h1, h2 {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+}
+h1 {
+  font-size: 48px;
+  float: left;
+  margin: 0 10px;
+}
+h2 {
+  font-size: 36px;
+  line-height: 75px;
+  font-weight: normal;
+}
+
+#weapons {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#weapons li button {
+  display: block;
+  float: left;
+
+  width: 200px;
+  height: 130px;
+  margin: 10px;
+
+  border: 0;
+  background: red url('/img/weapons.png') no-repeat;
+
+  font-size: 0;
+}
+#weapons li:nth-of-type(1) button,
+#weapons li:nth-of-type(4) button {
+  width: 400px;
+  clear: left;
+}
+
+#weapons li.fire  button { background-position: 50% 30px;   background-color: #A200FF; }
+#weapons li.water button { background-position: 60% -426px; background-color: #FF0097; }
+#weapons li.wind  button { background-position: 50% -540px; background-color: #00ABA9; }
+#weapons li.stone button { background-position: 50% -312px; background-color: #8CBF26; }
+#weapons li.magic button { background-position: 50% -198px; background-color: #A05000; }
+#weapons li.ice   button { background-position: 50% -84px;  background-color: #F09609; }

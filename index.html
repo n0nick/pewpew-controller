@@ -20,8 +20,7 @@
 <link rel="apple-touch-icon-precomposed" href="img/crosshair.png">
 <link rel="shortcut icon" href="img/crosshair.png">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Share+Tech">
-
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/style.css">
 
@@ -29,7 +28,7 @@
 <body>
 
   <script type="text/x-handlebars">
-    <h2>Welcome to Ember.js</h2>
+    <h1>Pew Pew!</h1>
 
     {{outlet}}
   </script>
@@ -40,6 +39,18 @@
       <li>{{item}}</li>
     {{/each}}
     </ul>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="build">
+    <h2>Build your weapon.</h2>
+    <ul id="weapons">
+    {{#each item in model}}
+      <li {{bindAttr class="item"}}><button>{{item}}</button></li>
+    {{/each}}
+    </ul>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="shoot">
   </script>
 
   <script src="js/libs/jquery-1.9.1.js"></script>
