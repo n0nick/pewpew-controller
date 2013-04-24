@@ -35,13 +35,16 @@ h2 {
   height: 130px;
   margin: 10px;
 
-  border: 0;
+  border: 2px solid transparent;
   background: red url('/img/weapons.png') no-repeat;
 
   font-size: 0;
 }
-#weapons li.hidden button {
-  visibility: hidden;
+#weapons li button.hidden { visibility: hidden; }
+#weapons li button:disabled {
+  opacity: 0.8;
+  border-color:#9ecaed;
+  box-shadow:0 0 10px #9ecaed;
 }
 #weapons li:nth-of-type(1) button,
 #weapons li:nth-of-type(4) button {

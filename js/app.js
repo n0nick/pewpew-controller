@@ -55,7 +55,7 @@
         index: function($page) {
           var serverHost = this._getParam("server");
           if (!serverHost) {
-            log("[Controller] No server address provided");
+            log("[Controller] [index] No server address provided");
             $("h2", $page).text("Please supply a server address.");
           } else {
             $(this._app.Connection).on("opened", function() {
@@ -66,7 +66,8 @@
         },
 
         build: function($page) {
-          var $weapons = $("#weapons li", $page);
+          // show weapons one-by-one
+          var $weapons = $("#weapons button", $page);
           var addWeapon = function() {
             var $hidden = $weapons.filter(".hidden");
             var random = Math.round(Math.random() * $hidden.length-1);
@@ -74,18 +75,33 @@
           };
           $weapons.addClass("hidden");
           window.setInterval(addWeapon, this._app.WEAPON_APPEARING_INTERVAL);
+
+          // weapon construction
+          var selectedWeapons = [];
+          $weapons.on('click', function() {
+            var weapon = $(this).text();
+            selectedWeapons.push(weapon);
+            log("[Controller] [build] weapons selected:", selectedWeapons);
+
+            $(this).attr('disabled', true);
+
+            if (selectedWeapons.length >= 3) { // time to shoot
+              app.Controllers.go('shoot', { weapons: selectedWeapons });
+            }
+          });
         },
 
-        shoot: function($page) {
+        shoot: function($page, params) {
+          log("[Controller] [Shoot] Shooting with weapons", params.weapons);
         }
       },
 
-      go: function(page) {
-        log("[Controller] viewing page", page);
+      go: function(page, params) {
+        log("[Controller] viewing page", page, params);
 
         var $page = this._showOnly('#' + page);
         if (page in this._controllers) {
-          this._controllers[page].call(this, $page);
+          this._controllers[page].call(this, $page, params);
         }
       }
     };
