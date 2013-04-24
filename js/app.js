@@ -118,7 +118,7 @@
           // send fire
           var reportFire = function(){
             app.Connection.send({
-              w: params.weapons.join(',')
+              w: params.weapons.sort().join(',')
             });
           };
           var reportInterval = window.setInterval(reportFire, app.SERVER_REPORT_INTERVAL);
