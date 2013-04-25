@@ -146,7 +146,7 @@
     };
 
     app.start = function(){
-      app.debug = !!(app.Controllers._getParam('debug'));
+      app.debug = !!(parseInt(app.Controllers._getParam('debug'), 10));
       app.Controllers.go('index');
     };
 
