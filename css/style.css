@@ -1,4 +1,4 @@
-/* Put your CSS here */
+/* general styles */
 html, body {
     margin: 50px;
     background-color: #393a3d;
@@ -26,6 +26,7 @@ h2 {
   font-weight: normal;
 }
 
+/* build */
 #weapons {
   list-style-type: none;
   margin: 0;
@@ -64,12 +65,14 @@ h2 {
 #weapons li.magic button { background-position: 50% -198px; background-color: #A05000; }
 #weapons li.ice   button { background-position: 50% -84px;  background-color: #F09609; }
 
+/* shoot */
 #spinner {
   background: #000 url('../img/spinner.gif') no-repeat 50% 50%;
   width: 800px;
   height: 400px;
 }
 
+/* server input */
 form input {
   height: 50px;
   font-size: 28px;
