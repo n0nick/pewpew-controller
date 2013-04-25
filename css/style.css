@@ -4,6 +4,7 @@ html, body {
     background-color: #393a3d;
     font-family: 'Open Sans', sans-serif;
     color: #eee;
+    -ms-touch-action: none;
 }
 
 .template {
