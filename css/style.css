@@ -36,7 +36,7 @@ h2 {
   margin: 10px;
 
   border: 2px solid transparent;
-  background: red url('/img/weapons.png') no-repeat;
+  background: red url('../img/weapons.png') no-repeat;
 
   font-size: 0;
 }
@@ -60,7 +60,7 @@ h2 {
 #weapons li.ice   button { background-position: 50% -84px;  background-color: #F09609; }
 
 #spinner {
-  background: #000 url('/img/spinner.gif') no-repeat 50% 50%;
+  background: #000 url('../img/spinner.gif') no-repeat 50% 50%;
   width: 800px;
   height: 400px;
 }
