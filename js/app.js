@@ -48,9 +48,10 @@
     app.Controllers = {
       _app: app,
 
-      _render: function(id) {
-        var $template = app.$templates.filter(id);
+      _render: function(templateName) {
+        var $template = app.$templates.filter("#" + templateName);
         app.$content.html($template.html());
+        app.$content.attr('class', templateName);
       },
 
       _getParam: function(key) {
@@ -136,9 +137,8 @@
         params = params || null;
         log("[Controller] viewing page:", page, params);
 
-        var hash = "#" + page;
-        window.document.location.hash = hash + (params ? "?" + $.param(params) : "");
-        this._render(hash);
+        window.document.location.hash = "#" + page + (params ? "?" + $.param(params) : "");
+        this._render(page);
         if (page in this._controllers) {
           this._controllers[page].call(this, params);
         }
