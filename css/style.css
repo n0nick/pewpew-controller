@@ -68,3 +68,16 @@ h2 {
   width: 800px;
   height: 400px;
 }
+
+form input {
+  height: 50px;
+  font-size: 28px;
+  padding: 0 10px;
+  border: 1px solid #000;
+}
+form input[type=text] {
+  width: 700px;
+}
+form input[type=submit] {
+  height: 52px;
+}

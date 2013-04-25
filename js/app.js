@@ -72,7 +72,7 @@
           var serverHost = this._getParam("server");
           if (!serverHost) {
             log("[Controller] [index] No server address provided");
-            app.$("h2").text("Please supply a server address.");
+            app.Controllers.go("server_input");
 
           } else {
             $(app.Connection).on("opened", function() {
@@ -80,6 +80,10 @@
             });
             app.Connection.start(serverHost);
           }
+        },
+
+        server_input: function() {
+          app.$("input[name=debug]").val(app.debug ? 1 : 0);
         },
 
         build: function() {
