@@ -45,6 +45,37 @@
       }
     },
 
+    app.Orientation = {
+      _app: app,
+
+      rotationXY: null,
+      rotationXZ: null,
+      rotationYZ: null,
+
+      _calcAngle: function(a, b) {
+        return Math.atan2(b, -a);
+      },
+
+      _updateRotationAngles: function(event) {
+        var acc = event.accelerationIncludingGravity;
+
+        this.rotationXY = this._calcAngle(acc.x, acc.y);
+        this.rotationXZ = this._calcAngle(acc.x, acc.z);
+        this.rotationYZ = this._calcAngle(acc.y, acc.z);
+      },
+
+      init: function() {
+        if (window.DeviceMotionEvent !== undefined) {
+          var self = this;
+          window.ondevicemotion = function(e) {
+            self._updateRotationAngles.call(self, e);
+          };
+        } else {
+          log("[Orientation] No device motion support :(");
+        }
+      }
+    },
+
     app.Controllers = {
       _app: app,
 
@@ -133,7 +164,10 @@
           // send fire
           var reportFire = function(){
             app.Connection.send({
-              w: params.weapons.sort().join(',')
+              w: params.weapons.sort().join(','),
+              xy: app.Orientation.rotationXY,
+              yz: app.Orientation.rotationYZ,
+              xz: app.Orientation.rotationXZ
             });
           };
           var reportInterval = window.setInterval(reportFire, app.SERVER_REPORT_INTERVAL);
@@ -161,6 +195,7 @@
 
     app.start = function(){
       app.debug = !!(parseInt(app.Controllers._getParam('debug'), 10));
+      app.Orientation.init();
       app.Controllers.go('index');
     };
 
