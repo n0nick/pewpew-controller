@@ -6,6 +6,10 @@ html, body {
     color: #eee;
 }
 
+.template {
+  display: none;
+}
+
 h1, h2 {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
