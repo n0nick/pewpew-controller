@@ -120,6 +120,16 @@
 
           log("[Controller] [Shoot] Shooting with weapons:", params.weapons);
 
+          // handle spinner animation
+          var $spinner = app.$('.spinner');
+          var html = '';
+
+          for (var i = 0; i < 10; ++i) {
+            html = '<div>' + html + '</div>';
+          }
+
+          $spinner.html(html);
+
           // send fire
           var reportFire = function(){
             app.Connection.send({
